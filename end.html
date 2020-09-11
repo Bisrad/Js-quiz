@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Quiz</title>
+    <title>Quiz - End Page</title>
 
     <!-- css link -->
     <link rel="stylesheet" href="../css/app.css">
-    
 </head>
 
-<body>
-
-<!-- navigation -->
+    <body>
 
    <!-- Nav Bar -->
 
@@ -24,13 +21,14 @@
   
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Submit Score<span class="sr-only">(current)</span></a>
+            <!-- issue with highlight when on page -->
+        </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="end.html">Submit Score</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="highscores.html">LeaderBoard</a>
         </li>
       </ul>
@@ -40,28 +38,21 @@
 
   <!-- End Nav -->
 
-  <!-- Start Main Area -->
-
-  <div class="hero">
-    <h1 class="main-text">You Dont Know JS Yet</h1>
-    <p class="lead">This quiz is designed to test your knowledge of essential JS terms. 
-        Beat the clock and see where you rank against others starting to code!</p>
-        <a class="btn start" href="#game-start">Go to Quiz</a>
-  </div>
-
-  <!-- End Main Area -->
-
-<!-- quiz container -->
-
-    <div class="game-start" id="game-start">
-        <div id="home" class="flex-center flex-column">
-            <h1>Quick Quiz</h1>
-            <a class="btn" href="/game.html">Play</a>
-            <a class="btn" href="/highscores.html">High Scores</a>
+  <!-- HighScore Input -->
+        
+        <div class="container">
+            <div id="end" class="flex-center flex-column">
+                <h1 id="finalScore">0</h1>
+                <form>
+                    <input id="input" name="username" id="username" placeholder="Enter Name"></input>
+                    <button type="submit" class="btn" id="saveScoreBtn" onclick="saveHighScore(event)">Save</button>
+                </form>
+                <a class="btn" href="/game.html">Play Again</a>
+                <a class="btn" href="/">Go Home</a>
+            </div>
         </div>
-    </div>
 
-<!-- end quiz container -->
+   <!-- End HighScore Input -->
 
     <!-- Footer Area -->
 
@@ -83,9 +74,8 @@
 
     <!-- End Footer Area -->
 
-<!-- jQuery first, , then Bootstrap JS -->
-<script src="../js/jquery.3.5.1.js" type="text/javascript"></script>
-<script src="./js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- link end js -->
+    <script src="../js/end.js"></script>
 
-</body>
+    </body>
 </html>
