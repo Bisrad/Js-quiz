@@ -8,65 +8,79 @@ const choices = Array.from(document.getElementsByClassName("choice-text"));
 // console.log(choices);
 const questionCounterText = document.getElementById("questionCounter");
 const scoreText = document.getElementById("score");
+// Timer
+const timer = document.getElementById("timer");
+// Loader
+const loader = document.getElementById('loader');
+const game = document.getElementById('game');
 
 let currentQuestion = {};
 let acceptingAnswers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
+// set timer length as count; declare intervalID
+let count = 60;
+let intervalID;
 
-// Array of questions
-let questions = [
+// Countdown Timer
+var time=60,r=document.getElementById('timer'),tmp=time;
 
-        {
-          "question": "Inside which HTML element do we put the JavaScript??",
-          "choice1": "<script>",
-          "choice2": "<javascript>",
-          "choice3": "<js>",
-          "choice4": "<scripting>",
-          "answer": 1
-        },
-        {
-          "question": "What is the correct syntax for referring to an external script called 'xxx.js'?",
-          "choice1": "<script href='xxx.js'>",
-          "choice2": "<script name='xxx.js'>",
-          "choice3": "<script src='xxx.js'>",
-          "choice4": "<script file='xxx.js'>",
-          "answer": 3
-        },
-        {
-          "question": " How do you write 'Hello World' in an alert box?",
-          "choice1": "msgBox('Hello World');",
-          "choice2": "alertBox('Hello World');",
-          "choice3": "msg('Hello World');",
-          "choice4": "alert('Hello World');",
-          "answer": 4
-        }
-]
+setInterval(function(){
+    var c=tmp--,m=(c/60)>>0,s=(c-m*60)+'';
+    r.textContent='Quiz Ends in '+m+':'+(s.length>1?'':'0')+s
+    tmp!=0||(tmp=time);
+},1000);
+
+// figure out how to stop timer
+
+// setTimeout(function(){
+//     clearInterval(timer);
+//  }, 1000);
+
+
+// Array of questions ( fetch from JSON )
+fetch('questions.json')
+    .then((res) => {
+        return res.json();
+    })
+    .then((loadedQuestions) => {
+        questions = loadedQuestions;
+
+    startGame();
+    })
+    .catch((err) => {
+        console.error(err);
+    });
 
 // Array Check
 // console.log(questions);
 
 // Constants
 
-const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+const CORRECT_BONUS = 20;
+const MAX_QUESTIONS = 5;
 
 startGame = () => {
     questionCounter = 0;
     score = 0;
-    availableQuestions = [...questions];
+    availableQuestions = [... questions];
     // console.log(availableQuestions); // check for questions
     getNewQuestion();
+    game.classList.remove('hidden');
+    loader.classList.add('hidden');
 };
 
 
 // Add questions to game
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS){
+        localStorage.setItem("mostRecentScore", score);
+
         //go to the end of page
         return window.location.assign('/end.html');
-    }
+    };
+
     questionCounter++;
     questionCounterText.innerText = `${questionCounter}/${MAX_QUESTIONS}`;
 
@@ -116,4 +130,4 @@ incrementScore = num => {
     scoreText.innerText = score;
 };
 
-startGame();
+
