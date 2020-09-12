@@ -13,6 +13,10 @@ with fluid pages and buttons\
 SO THAT the quiz can be interactive\
 AND users can rank and save their scores in localStorage
 
+## Deploy Project
+
+``` https://bisrad.github.io/Js-quiz2/ ```
+
 ## Tools Utilized
 
 ### Bootstrap + Bootswatch for quick styling and responsive settings
