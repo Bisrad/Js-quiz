@@ -19,7 +19,7 @@ AND users can rank and save their scores in localStorage
 
 ## Deploy Project
 
-``` <https://bisrad.github.io/Js-quiz2/> ```
+<https://bisrad.github.io/Js-quiz2/> 
 
 ## Tools Utilized
 
